@@ -1,18 +1,23 @@
 pipeline{
   agent any
     stages{
-      stage('checkout'){
+      stage('Build'){
         steps{
-          git'https://github.com/TelukuntlaShashanka/Jenkinsrepo.git'
+          echo 'No build step for now'
+          //git'https://github.com/TelukuntlaShashanka/Jenkinsrepo.git'
         }
       }
-stage('Validate'){
+stage('Test'){
   steps{
-      echo "checking existence.."
-      sh 'ls -1 index.html'
+      //echo "checking existence.."
+     // sh 'ls -1 index.html'
+    sh 'npm test'
     }
   }
   stage('Deploy'){
+    when {
+      branch 'main'
+    }
     steps{
       echo "Deploying (simulated)"
 }
